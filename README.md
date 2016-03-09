@@ -1,0 +1,3 @@
+# astral
+
+A ZSH Theme.
