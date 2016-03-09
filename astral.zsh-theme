@@ -322,17 +322,18 @@ _astral_return_line() {
   # - 0-59 seconds: "<duration>s"
   # - 60+ seconds: "<minutes>m<seconds>s (<duration>s)"
   local _duration_string=""
+  local _minutes
+  local _minute_string
+  local _hours
+  local _hour_string
   if [[ -n "${_duration}" ]]
   then
-    local _minutes
     _minutes="$((_duration / 60))"
     if [[ "${_minutes}" -eq 0 ]]
     then
       _duration_string="${_duration}s"
     else
-      local _hours
       _hours="$((_minutes / 60))"
-      local _minute_string
       if [[ "${_hours}" -eq 0 ]]
       then
         _minute_string="${_minutes}m$((_duration % 60))s"
