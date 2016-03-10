@@ -1,5 +1,5 @@
 ###############################################################################
-# Astral - A ZSH Theme
+# Astral - A ZSH Theme with Zen Mode.
 #
 # https://github.com/alphabetum/astral
 #
@@ -416,7 +416,7 @@ _astral_return_line() {
 # Prompt
 ###############################################################################
 
-export ASTRAL_DISPLAY_CONTEXT=1
+export ASTRAL_ZEN_MODE=0
 astral() {
   export _NEWLINE=$'\n'
 
@@ -424,27 +424,31 @@ astral() {
   then
     cat <<HEREDOC
 Usage:
-  ${0} (hide | show | prompt)
-  ${0} -h | --help
+  ${0} zen
+  ${0} prompt
+  ${0} -h | --help | help
 
 Options:
   -h --help  Display this usage information.
 
 Subcommands:
-  hide    Hide the top section.
-  show    Show the top section.
+  zen     Toggle Zen Mode.
   prompt  Print the formatted prompt string to assign to \$PROMPT.
 
 Description:
   A ZSH theme.
 HEREDOC
     return 0
-  elif [[ "${1:-}" =~ '^off|hide|disable|simple$' ]]
+  elif [[ "${1:-}" =~ '^zen|on|off|show|hide|enable|disable|normal|simple$' ]]
   then
-    ASTRAL_DISPLAY_CONTEXT=0
-  elif [[ "${1:-}" =~ '^on|show|enable|normal$' ]]
-  then
-    ASTRAL_DISPLAY_CONTEXT=1
+    if ((ASTRAL_ZEN_MODE))
+    then
+      ASTRAL_ZEN_MODE=0
+      printf "Zen Mode off.\n"
+    else
+      ASTRAL_ZEN_MODE=1
+      printf "Zen Mode on.\n"
+    fi
   elif  [[ "${1:-}" =~ '^prompt$' ]]
   then
     # $_top_section
@@ -459,11 +463,11 @@ HEREDOC
     local _bottom_line
     _bottom_line="$(_astral_prompt_line)"
 
-    if ((ASTRAL_DISPLAY_CONTEXT))
+    if ((ASTRAL_ZEN_MODE))
     then
-      printf "%s\n" "${_top_section}${_NEWLINE}${_bottom_line}"
-    else
       printf "%s\n" "${_bottom_line}"
+    else
+      printf "%s\n" "${_top_section}${_NEWLINE}${_bottom_line}"
     fi
   else
     "${0}" -h

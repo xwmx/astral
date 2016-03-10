@@ -1,6 +1,6 @@
 # astral
 
-A ZSH Theme.
+A ZSH Theme with Zen Mode.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/alphabetum/astral/master/astral.png" alt="astral preview" width="800">
