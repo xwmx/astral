@@ -419,8 +419,8 @@ astral() {
   then
     cat <<HEREDOC
 Usage:
-  astral (hide | show | prompt)
-  yes -h | --help
+  ${0} (hide | show | prompt)
+  ${0} -h | --help
 
 Options:
   -h --help  Display this usage information.
