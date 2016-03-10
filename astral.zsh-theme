@@ -397,8 +397,11 @@ _astral_return_line() {
   # $_spacer
   #
   # A string of characters for spacing elements.
+  #
+  # NOTE: Using `sed` rather than `tr` because `tr` mangles the middle dot on
+  # some systems.
   local _spacer
-  _spacer="$(_astral_spaces "${_spacer_length}" | tr ' ' '⋅')"
+  _spacer="$(_astral_spaces "${_spacer_length}" | sed 's/ /·/g')"
 
   # $_full_line
   local _full_line
