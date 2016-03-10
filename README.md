@@ -2,7 +2,9 @@
 
 A ZSH Theme.
 
-![](https://raw.githubusercontent.com/alphabetum/astral/master/astral.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/alphabetum/astral/master/astral.png" alt="astral preview" width="800">
+</p>
 
 Recommended:
 - <https://github.com/chriskempson/base16-shell>
