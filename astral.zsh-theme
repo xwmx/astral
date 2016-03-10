@@ -1,12 +1,14 @@
 ###############################################################################
-# Astral
+# Astral - A ZSH Theme
+#
+# https://github.com/alphabetum/astral
 #
 # Prompt reference:
-# http://www.nparikh.org/unix/prompt.php
-# http://bolyai.cs.elte.hu/zsh-manual/zsh_15.html
+#   http://www.nparikh.org/unix/prompt.php
+#   http://bolyai.cs.elte.hu/zsh-manual/zsh_15.html
 #
 # See also:
-# https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
+#   https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
 ###############################################################################
 
 ###############################################################################
