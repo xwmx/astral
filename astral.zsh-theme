@@ -394,7 +394,7 @@ _astral_return_line() {
 
   # $_spacer_length
   local _spacer_length
-  _spacer_length="$((COLUMNS - _prefix_visible_length - 22))"
+  _spacer_length="$((COLUMNS - _prefix_visible_length - 24))"
 
   # $_spacer
   #
@@ -407,7 +407,8 @@ _astral_return_line() {
 
   # $_full_line
   local _full_line
-  _full_line="${_prefix} ${_spacer} ${_time}"
+  _full_line="${_prefix} ${_spacer} ${_time} •"
+  # NOTE: use `_full_line="${_prefix} ${_spacer} ${_time} »"` for top line.
 
   printf "%s\n" "${_full_line}%{${reset_color}%}"
 }
