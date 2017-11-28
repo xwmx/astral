@@ -350,8 +350,11 @@ _astral_return_line() {
   # $_time
   #
   # The current time in 24-hour format.
+  #
+  # More Information:
+  # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Date-and-time
   local _time
-  _time="%* %D{%F}"
+  _time='%* %D{%F}'
 
   # $_return_status_0
   #
