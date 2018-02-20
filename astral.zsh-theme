@@ -34,6 +34,11 @@ precmd() {
   # as when enter is pressed without a command.
   _COMMAND_START_TIME="${ASTRAL_COMMAND_START_TIME:-}"
   ASTRAL_COMMAND_START_TIME=""
+
+  if ! ((ASTRAL_ZEN_MODE))
+  then
+    print -rP "$(_astral_info_section)"
+  fi
 }
 
 ###############################################################################
@@ -417,6 +422,27 @@ _astral_return_line() {
 }
 
 ###############################################################################
+# Sections
+###############################################################################
+
+# _astral_info_section()
+#
+# Usage:
+#   _astral_info_section
+#
+# Description:
+#   Print the info section.
+_astral_info_section() {
+  # $_top_section
+  #
+  # Full top section.
+  local _info_section
+  _info_section="$(_astral_return_line)${_NEWLINE}$(_astral_context_line)"
+
+  printf "%s\n" "${_info_section}"
+}
+
+###############################################################################
 # Prompt
 ###############################################################################
 
@@ -453,25 +479,29 @@ HEREDOC
       ASTRAL_ZEN_MODE=1
       printf "Zen Mode on.\n"
     fi
-  elif  [[ "${1:-}" =~ '^prompt$' ]]
+  elif [[ "${1:-}" =~ '^info$' ]]
   then
     # $_top_section
     #
     # Full top section.
-    local _top_section
-    _top_section="$(_astral_return_line)${_NEWLINE}$(_astral_context_line)"
+    local _astral_info_section
+    _astral_info_section="$(_astral_info_section)"
 
+    printf "%s\n" "${_astral_info_section}"
+    # print -rP "${_top_section}"
+  elif [[ "${1:-}" =~ '^prompt$' ]]
+  then
     # $_bottom_line
     #
     # Full bottom prompt line.
     local _bottom_line
     _bottom_line="$(_astral_prompt_line)"
 
-    if ((ASTRAL_ZEN_MODE))
+    if [[ "${2:-}" =~ '^--all|--full|--demo$' ]]
     then
-      printf "%s\n" "${_bottom_line}"
+       print -rP "$(astral info)${_NEWLINE}$(astral prompt)"
     else
-      printf "%s\n" "${_top_section}${_NEWLINE}${_bottom_line}"
+      printf "%s\n" "${_bottom_line}"
     fi
   else
     "${0}" -h
