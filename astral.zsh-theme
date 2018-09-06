@@ -360,13 +360,13 @@ _astral_return_line() {
   #
   # The formatting when the previous command returns with status 0.
   local _return_status_0_format
-  _return_status_0_format="%{$fg_no_bold[green]%}"
+  _return_status_0_format="%{$reset_color%}%{$fg_no_bold[green]%}"
 
   # $_return_status_0_inverse_format
   #
   # The inverse formatting when the previous command returns with status 0.
   local _return_status_0_inverse_format
-  _return_status_0_inverse_format="%{$fg_no_bold[green]%}"
+  _return_status_0_inverse_format="%{$reset_color%}%{$fg_no_bold[black]%}%{$bg[green]%}"
 
   # $_return_status_0_prefix
   #
@@ -384,13 +384,13 @@ _astral_return_line() {
   #
   # The formatting when the previous command returns with status 1.
   local _return_status_1_format
-  _return_status_1_format="%{$fg_no_bold[red]%}"
+  _return_status_1_format="%{$reset_color%}%{$fg_no_bold[red]%}"
 
   # $_return_status_1_inverse_format
   #
   # The inverse formatting when the previous command returns with status 0.
   local _return_status_1_inverse_format
-  _return_status_1_inverse_format="%{$fg_no_bold[black]%}"
+  _return_status_1_inverse_format="%{$reset_color%}%{$fg_no_bold[black]%}%{$bg[red]%}"
 
   # $_return_status_1_prefix
   #
