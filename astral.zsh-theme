@@ -358,6 +358,18 @@ _astral_return_line() {
 
   # $_return_status_0_format
   #
+  # The formatting when the previous command returns with status 0.
+  local _return_status_0_format
+  _return_status_0_format="%{$fg_no_bold[green]%}"
+
+  # $_return_status_0_inverse_format
+  #
+  # The inverse formatting when the previous command returns with status 0.
+  local _return_status_0_inverse_format
+  _return_status_0_inverse_format="%{$fg_no_bold[green]%}"
+
+  # $_return_status_0_prefix
+  #
   # The prefix when the previous command returns with status 0.
   #
   # NOTE: Character options:
@@ -365,10 +377,22 @@ _astral_return_line() {
   # - •
   # NOTE: Unicode characters cause tab completion to delete previous command's
   # output lines.
-  local _return_status_0_format
-  _return_status_0_format="%{$fg_no_bold[green]%}•"
+  local _return_status_0_prefix
+  _return_status_0_prefix="${_return_status_0_format}•"
 
-  # $_return_status_1
+  # $_return_status_1_format
+  #
+  # The formatting when the previous command returns with status 1.
+  local _return_status_1_format
+  _return_status_1_format="%{$fg_no_bold[red]%}"
+
+  # $_return_status_1_inverse_format
+  #
+  # The inverse formatting when the previous command returns with status 0.
+  local _return_status_1_inverse_format
+  _return_status_1_inverse_format="%{$fg_no_bold[black]%}"
+
+  # $_return_status_1_prefix
   #
   # The prefix when the previous command returns with status 1.
   #
@@ -377,19 +401,19 @@ _astral_return_line() {
   # - x
   # NOTE: Unicode characters cause tab completion to delete previous command's
   # output lines.
-  local _return_status_1_format
-  _return_status_1_format="%{$fg_no_bold[red]%}x"
+  local _return_status_1_prefix
+  _return_status_1_prefix="${_return_status_1_format}x"
 
   # $_return_status
   #
   # Prefix prompt with a symbol with color indicating last return status:
   # green for 0 and red for non-0.
-  local _return_status_format
-  _return_status_format="%(?:${_return_status_0_format}:${_return_status_1_format})"
+  local _return_status_prefix
+  _return_status_prefix="%(?:${_return_status_0_prefix}:${_return_status_1_prefix})"
 
   # $_prefix
   local _prefix
-  _prefix="${_return_status_format} ${_duration_string}"
+  _prefix="${_return_status_prefix} ${_duration_string}"
 
   # $_prefix_visible_length
   local _prefix_visible_length
