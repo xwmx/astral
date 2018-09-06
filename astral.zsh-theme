@@ -366,7 +366,7 @@ _astral_return_line() {
   # NOTE: Unicode characters cause tab completion to delete previous command's
   # output lines.
   local _return_status_0
-  _return_status_0="%{$fg_no_bold[black]%}•"
+  _return_status_0="%{$fg_no_bold[green]%}•"
 
   # $_return_status_1
   #
