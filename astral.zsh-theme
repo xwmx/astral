@@ -404,6 +404,20 @@ _astral_return_line() {
   local _return_status_1_prefix
   _return_status_1_prefix="${_return_status_1_format}x"
 
+  # $_return_status_format
+  #
+  # Prompt formattings with color indicating last return status:
+  # green for 0 and red for non-0.
+  local _return_status_format
+  _return_status_format="%(?:${_return_status_0_format}:${_return_status_1_format})"
+
+  # $_return_status_inverse_format
+  #
+  # Prompt formattings with color indicating last return status:
+  # green for 0 and red for non-0.
+  local _return_status_inverse_format
+  _return_status_inverse_format="%(?:${_return_status_0_inverse_format}:${_return_status_1_inverse_format})"
+
   # $_return_status
   #
   # Prefix prompt with a symbol with color indicating last return status:
