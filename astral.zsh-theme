@@ -359,8 +359,11 @@ _astral_return_line() {
   # $_return_status_0_format
   #
   # The formatting when the previous command returns with status 0.
+  #
+  # Color chart:
+  # https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
   local _return_status_0_format
-  _return_status_0_format="%{$reset_color%}%{$fg_no_bold[green]%}"
+  _return_status_0_format="%{$reset_color%}%F{239}"
 
   # $_return_status_0_inverse_format
   #
