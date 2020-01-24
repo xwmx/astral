@@ -238,7 +238,7 @@ _astral_rbenv_prompt() {
 _astral_rbenv_version_status() {
   local _version
   _version="$(rbenv version-name)"
-  if [[ "$(rbenv global)" != "${_version}" ]]
+  if [[ "$(rbenv global)" != "${_version}" ]] || rbenv local > /dev/null 2>&1
   then
     printf "%s\n" "${_version}"
   fi
