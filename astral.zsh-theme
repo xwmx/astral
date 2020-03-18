@@ -1,7 +1,7 @@
 ###############################################################################
 # Astral - A ZSH Theme with Zen Mode.
 #
-# https://github.com/alphabetum/astral
+# https://github.com/xwmx/astral
 #
 # Prompt reference:
 #   http://www.nparikh.org/unix/prompt.php
