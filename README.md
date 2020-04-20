@@ -1,6 +1,6 @@
 # astral
 
-A ZSH Theme with Zen Mode.
+A Zsh Theme with Zen Mode.
 
 In normal mode, the `astral` prompt consists of 3 lines:
 
