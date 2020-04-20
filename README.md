@@ -10,6 +10,8 @@ In normal mode, the `astral` prompt consists of 3 lines:
 
 `astral zen` mode hides the return and context lines, leaving just the prompt.
 
+## Demo
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/xwmx/astral/master/astral.png" alt="astral preview" width="800">
 </p>
