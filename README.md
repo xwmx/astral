@@ -4,7 +4,7 @@ A ZSH Theme with Zen Mode.
 
 In normal mode, the `astral` prompt consists of 3 lines:
 
-- Return Line: displays the duration of each command along with the time and date that the command was run. The return line is displayed in red when a command returns with an error status.
+- Return Line: displays the duration of each command along with the time and date that the command exited. The return line is displayed in red when a command returns with an error status.
 - Context Line: displays the machine name, current path, and ssh status. When in a project directory, the context line also displays git status and language version information.
 - Prompt line: Displays a simple prompt using color to indicate the return status of the last command.
 
