@@ -203,6 +203,35 @@ _astral_machine() {
   printf "%s\n" "${_astral_machine_string}"
 }
 
+# _notebook
+###############################################################################
+
+# _astral_notebook()
+#
+# Usage:
+#   _astral_notebook
+#
+# Description:
+#   Display current `notes` notebook name if available. About `notes`:
+#   https://github.com/xwmx/notes
+_astral_notebook() {
+  if hash "notes" &>/dev/null
+  then
+    local _maybe_notebook_name=
+    _maybe_notebook_name="$(notes notebook || printf "")"
+    if [[ -n "${_maybe_notebook_name:-}" ]]
+    then
+      local _notebook_prefix="%{$fg_bold[blue]%}notes:"
+      local _notebook_value="%{$fg_bold[cyan]%}${_maybe_notebook_name}"
+      local _notebook_suffix="%{$fg_bold[blue]%}%{${reset_color}%} "
+      local _notebook_string="${_notebook_prefix}${_notebook_value}${_notebook_suffix}"
+    else
+      _notebook_string=""
+    fi
+    printf "%s\n" "${_notebook_string}"
+  fi
+}
+
 # _rbenv
 ###############################################################################
 
@@ -283,7 +312,7 @@ _astral_context_line() {
   #
   # Full prompt line.
   local _full_line
-  _full_line="${_context} $(_astral_rbenv_prompt)$(_astral_git_prompt)"
+  _full_line="${_context} $(_astral_notebook)$(_astral_rbenv_prompt)$(_astral_git_prompt)"
 
   printf "%s\n" "${_full_line}%{${reset_color}%}"
 }
