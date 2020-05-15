@@ -218,7 +218,7 @@ _astral_notebook() {
   if hash "notes" &>/dev/null
   then
     local _maybe_notebook_name=
-    _maybe_notebook_name="$(notes notebooks current || printf "")"
+    _maybe_notebook_name="$(notes notebooks current || printf "" | head -1)"
     if [[ -n "${_maybe_notebook_name:-}" ]]
     then
       local _notebook_prefix="%{$fg_bold[blue]%}notes:"
