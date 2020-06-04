@@ -212,16 +212,16 @@ _astral_machine() {
 #   _astral_notebook
 #
 # Description:
-#   Display current `notes` notebook name if available. About `notes`:
-#   https://github.com/xwmx/notes
+#   Display current `nb` notebook name if available. About `nb`:
+#   https://github.com/xwmx/nb
 _astral_notebook() {
-  if hash "notes" &>/dev/null
+  if hash "nb" &>/dev/null
   then
     local _maybe_notebook_name=
-    _maybe_notebook_name="$(notes notebooks current || printf "" | head -1)"
+    _maybe_notebook_name="$(nb notebooks current || printf "" | head -1)"
     if [[ -n "${_maybe_notebook_name:-}" ]]
     then
-      local _notebook_prefix="%{$fg_bold[blue]%}notes:"
+      local _notebook_prefix="%{$fg_bold[blue]%}nb:"
       local _notebook_value="%{$fg_bold[cyan]%}${_maybe_notebook_name}"
       local _notebook_suffix="%{$fg_bold[blue]%}%{${reset_color}%} "
       local _notebook_string="${_notebook_prefix}${_notebook_value}${_notebook_suffix}"
