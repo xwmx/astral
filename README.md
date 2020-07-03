@@ -26,6 +26,7 @@ In normal mode, the `astral` prompt consists of 3 lines:
   <img src="https://raw.githubusercontent.com/xwmx/astral/master/astral.png" alt="astral preview" width="800">
 </p>
 
-Recommended:
+## `❯❯❯❯ companions`
+
 - <https://github.com/chriskempson/base16-shell>
 - <https://github.com/zsh-users/zsh-syntax-highlighting>
