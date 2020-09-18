@@ -220,7 +220,8 @@ _astral_notebook() {
     local _maybe_notebook_name=
     _maybe_notebook_name="$(nb notebooks current --skip-git | head -1)"
 
-    if [[ -n "${_maybe_notebook_name:-}" ]]
+    if [[ -n "${_maybe_notebook_name:-}"            ]] &&
+       [[ ! "${_maybe_notebook_name}" =~ \-\-\-\-\- ]]
     then
       local _notebook_prefix="%{$fg_bold[blue]%}nb:"
       local _notebook_value="%{$fg_bold[cyan]%}${_maybe_notebook_name}"
