@@ -218,7 +218,10 @@ _astral_notebook() {
   if hash "nb" &>/dev/null
   then
     local _maybe_notebook_name=
-    _maybe_notebook_name="$(nb notebooks current --skip-git | head -1)"
+    _maybe_notebook_name="$(
+      # Run command in code block to capture `time` output.
+      { nb notebooks current --skip-git } 2>/dev/null | head -1
+    )"
 
     if [[ -n "${_maybe_notebook_name:-}"            ]] &&
        [[ ! "${_maybe_notebook_name}" =~ \-\-\-\-\- ]]
