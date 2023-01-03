@@ -251,42 +251,50 @@ _astral_notebook() {
 #   If _astral_ruby_version_status() returns a version, generate the prompt
 #   section displaying the Ruby version.
 _astral_ruby_prompt() {
+  local _maybe_ruby_version=
+  local _ruby_version_string=
+
   if hash "rbenv" &> /dev/null
   then
-    local _maybe_ruby_version=
-    _maybe_ruby_version="$(_astral_ruby_version_status)"
-
-    if [[ -n "${_maybe_ruby_version}" ]]
-    then
-      local _version_prefix="%{$fg_bold[blue]%}ruby:"
-      local _version_value="%{$fg_bold[cyan]%}${_maybe_ruby_version}"
-      local _version_suffix="%{$fg_bold[blue]%}%{${reset_color}%} "
-      local _ruby_version_string="${_version_prefix}${_version_value}${_version_suffix}"
-    else
-      local _ruby_version_string=""
-    fi
-
-    printf "%s\n" "${_ruby_version_string}"
+    _maybe_ruby_version="$(_astral_ruby_version)"
   fi
+
+  if [[ -n "${_maybe_ruby_version}" ]]
+  then
+    local _version_prefix="%{$fg_bold[blue]%}ruby:"
+    local _version_value="%{$fg_bold[cyan]%}${_maybe_ruby_version}"
+    local _version_suffix="%{$fg_bold[blue]%}%{${reset_color}%} "
+
+    _ruby_version_string="${_version_prefix}${_version_value}${_version_suffix}"
+  fi
+
+  printf "%s\n" "${_ruby_version_string}"
 }
 
-# _astral_ruby_version_status()
+# _astral_ruby_version()
 #
 # Usage:
-#   _astral_ruby_version_status
+#   _astral_ruby_version
 #
 # Description:
 #   Show current Ruby version if different from global version.
 #
 # via: https://gist.github.com/mislav/1712320
-_astral_ruby_version_status() {
-  local _version=
-  _version="$(rbenv version-name)"
+_astral_ruby_version() {
+  local _print_version=0
 
-  if [[ "$(rbenv global)" != "${_version}" ]] ||
+  local _local_version=
+  _local_version="$(rbenv version-name)"
+
+  if [[ "$(rbenv global)" != "${_local_version}" ]] ||
      rbenv local > /dev/null 2>&1
   then
-    printf "%s\n" "${_version}"
+    _print_version=1
+  fi
+
+  if ((_print_version))
+  then
+    printf "%s\n" "${_local_version}"
   fi
 }
 
