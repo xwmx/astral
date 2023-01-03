@@ -255,6 +255,7 @@ _astral_ruby_prompt() {
   then
     local _maybe_ruby_version=
     _maybe_ruby_version="$(_astral_ruby_version_status)"
+
     if [[ -n "${_maybe_ruby_version}" ]]
     then
       local _version_prefix="%{$fg_bold[blue]%}ruby:"
@@ -264,6 +265,7 @@ _astral_ruby_prompt() {
     else
       local _ruby_version_string=""
     fi
+
     printf "%s\n" "${_ruby_version_string}"
   fi
 }
@@ -278,9 +280,11 @@ _astral_ruby_prompt() {
 #
 # via: https://gist.github.com/mislav/1712320
 _astral_ruby_version_status() {
-  local _version
+  local _version=
   _version="$(rbenv version-name)"
-  if [[ "$(rbenv global)" != "${_version}" ]] || rbenv local > /dev/null 2>&1
+
+  if [[ "$(rbenv global)" != "${_version}" ]] ||
+     rbenv local > /dev/null 2>&1
   then
     printf "%s\n" "${_version}"
   fi
