@@ -239,45 +239,45 @@ _astral_notebook() {
   fi
 }
 
-# _rbenv
+# _ruby
 ###############################################################################
 
-# _astral_rbenv_prompt()
+# _astral_ruby_prompt()
 #
 # Usage:
-#   _astral_rbenv_prompt
+#   _astral_ruby_prompt
 #
 # Description:
-#   If rbenv is installed and _rbenv_version_status() returns a version,
-#   generate the prompt section displaying the Ruby version.
-_astral_rbenv_prompt() {
+#   If _astral_ruby_version_status() returns a version, generate the prompt
+#   section displaying the Ruby version.
+_astral_ruby_prompt() {
   if hash "rbenv" &> /dev/null
   then
-    local _maybe_rbenv_version
-    _maybe_rbenv_version="$(_astral_rbenv_version_status)"
-    if [[ -n "${_maybe_rbenv_version}" ]]
+    local _maybe_ruby_version=
+    _maybe_ruby_version="$(_astral_ruby_version_status)"
+    if [[ -n "${_maybe_ruby_version}" ]]
     then
-      local _rbenv_prefix="%{$fg_bold[blue]%}ruby:"
-      local _rbenv_value="%{$fg_bold[cyan]%}${_maybe_rbenv_version}"
-      local _rbenv_suffix="%{$fg_bold[blue]%}%{${reset_color}%} "
-      local _rbenv_string="${_rbenv_prefix}${_rbenv_value}${_rbenv_suffix}"
+      local _version_prefix="%{$fg_bold[blue]%}ruby:"
+      local _version_value="%{$fg_bold[cyan]%}${_maybe_ruby_version}"
+      local _version_suffix="%{$fg_bold[blue]%}%{${reset_color}%} "
+      local _ruby_version_string="${_version_prefix}${_version_value}${_version_suffix}"
     else
-      _rbenv_string=""
+      local _ruby_version_string=""
     fi
-    printf "%s\n" "${_rbenv_string}"
+    printf "%s\n" "${_ruby_version_string}"
   fi
 }
 
-# _rbenv_version_status()
+# _astral_ruby_version_status()
 #
 # Usage:
-#   _rbenv_version_status
+#   _astral_ruby_version_status
 #
 # Description:
-#   show current rbenv version if different from rbenv global
+#   Show current Ruby version if different from global version.
 #
 # via: https://gist.github.com/mislav/1712320
-_astral_rbenv_version_status() {
+_astral_ruby_version_status() {
   local _version
   _version="$(rbenv version-name)"
   if [[ "$(rbenv global)" != "${_version}" ]] || rbenv local > /dev/null 2>&1
@@ -319,7 +319,7 @@ _astral_context_line() {
   #
   # Full prompt line.
   local _full_line
-  _full_line="${_context} $(_astral_notebook)$(_astral_rbenv_prompt)$(_astral_git_prompt)"
+  _full_line="${_context} $(_astral_notebook)$(_astral_ruby_prompt)$(_astral_git_prompt)"
 
   printf "%s\n" "${_full_line}%{${reset_color}%}"
 }
