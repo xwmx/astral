@@ -254,7 +254,7 @@ _astral_ruby_prompt() {
   local _maybe_ruby_version=
   local _ruby_version_string=
 
-  if hash "rbenv" &> /dev/null
+  if hash "asdf" &> /dev/null || hash "rbenv" &> /dev/null
   then
     _maybe_ruby_version="$(_astral_ruby_version)"
   fi
@@ -281,18 +281,31 @@ _astral_ruby_prompt() {
 #
 # via: https://gist.github.com/mislav/1712320
 _astral_ruby_version() {
+  local _asdf_current_output=
+  local _local_version=
   local _print_version=0
 
-  local _local_version=
-  _local_version="$(rbenv version-name)"
-
-  if [[ "$(rbenv global)" != "${_local_version}" ]] ||
+  if hash "rbenv" &> /dev/null                          &&
+     [[ "$(rbenv global)" != "${_local_version}" ]]     ||
      rbenv local > /dev/null 2>&1
   then
+    _local_version="$(rbenv version-name)"
+    _print_version=1
+  elif hash "asdf" &> /dev/null                         &&
+     _asdf_current_output="$(asdf current ruby)"
+  then
+    local _asdf_current_version="${_asdf_current_output% *}"
+    _asdf_current_version="${_asdf_current_version#* }"
+    _asdf_current_version="${_asdf_current_version% *}"
+    _asdf_current_version="$(
+      printf "%s\\n" "${_asdf_current_version}" | awk '$1=$1'
+    )"
+
+    _local_version="${_asdf_current_version:-}"
     _print_version=1
   fi
 
-  if ((_print_version))
+  if ((_print_version)) && [[ -n "${_local_version:-}"  ]]
   then
     printf "%s\n" "${_local_version}"
   fi
