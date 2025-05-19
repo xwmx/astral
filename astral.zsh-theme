@@ -286,7 +286,7 @@ _astral_ruby_version() {
   local _print_version=0
 
   if hash "rbenv" &> /dev/null                          &&
-     [[ "$(rbenv global)" != "${_local_version}" ]]     ||
+     [[ "$(rbenv global)" != "${_local_version}"  ]]    ||
      rbenv local > /dev/null 2>&1
   then
     _local_version="$(rbenv version-name)"
@@ -294,6 +294,13 @@ _astral_ruby_version() {
   elif hash "asdf" &> /dev/null                         &&
      _asdf_current_output="$(asdf current ruby)"
   then
+    if [[ "${_asdf_current_output}" =~ ^Name      ]]
+    then
+      _asdf_current_output="$(
+        printf "%s\\n" "${_asdf_current_output}" | sed '1d'
+      )"
+    fi
+
     local _asdf_current_version="${_asdf_current_output% *}"
     _asdf_current_version="${_asdf_current_version#* }"
     _asdf_current_version="${_asdf_current_version% *}"
